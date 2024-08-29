@@ -1,1 +1,28 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # 当推送到 main 分支时触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Copy files to server
+        run: |
+          rsync -avz --delete --exclude '.git' . ecs-user@47.108.199.111:/var/www/panmin.me
+
+      - name: Run Docker Compose
+        run: |
+          ssh ecs-user@47.108.199.111 "cd /var/www/panmin.me && docker-compose down && docker-compose up -d"
 
