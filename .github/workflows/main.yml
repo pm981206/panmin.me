@@ -3,7 +3,12 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main  # 当推送到 main 分支时触发
+      - main # 当推送到 main 分支时触发
+
+env:
+  USER_NAME: ${{ secrets.USER_NAME }} # 服务器用户名
+  SERVER_HOST: ${{ secrets.SERVER_HOST }} # 服务器IP地址
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # SSH私钥
 
 jobs:
   deploy:
@@ -16,13 +21,12 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ env.SSH_PRIVATE_KEY }}
 
       - name: Copy files to server
         run: |
-          rsync -avz --delete --exclude '.git' . ecs-user@47.108.199.111:/var/www/panmin.me
+          rsync -avz --delete --exclude '.git' . ${{ env.USER_NAME }}@${{ env.SERVER_HOST }}:/var/www/panmin.me
 
       - name: Run Docker Compose
         run: |
-          ssh ecs-user@47.108.199.111 "cd /var/www/panmin.me && docker-compose down && docker-compose up -d"
-
+          ssh ${{ env.USER_NAME }}@${{ env.SERVER_HOST }} "cd /var/www/panmin.me && docker-compose down && docker-compose up -d"
