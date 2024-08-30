@@ -15,15 +15,8 @@
                 sans-serif;
             font-size: calc(10px + 0.33vw);
             -webkit-font-smoothing: antialiased;
+            padding: 5vh 10vw;
             color: #121314;
-        }
-
-        header {
-            padding: 0 5vw;
-        }
-
-        main {
-            padding: 0 10vw;
         }
 
         h1 {
@@ -36,70 +29,66 @@
             font-size: 1.6em;
             font-weight: 300;
             line-height: 1.4;
+            max-width: 28em;
         }
 
         a {
             text-decoration: none;
             white-space: nowrap;
             color: #121314;
+            position: relative;
         }
 
-        footer {
-            padding: 0 10vw;
+        a:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 66%;
+            left: -0.1em;
+            right: -0.1em;
+            bottom: 0;
+            transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
+            background-color: rgba(79, 192, 141, 0.5);
         }
 
-        address {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        address a {
-            margin: 0 1em;
-            font-size: 1.2em;
-        }
-
-        address a:hover {
-            text-decoration: underline;
+        a:hover:after {
+            top: 0%;
         }
     </style>
 </head>
 
 <body>
-    <main>
-        <article>
-            <h1>Hello.</h1>
-            <h2 style="font-weight: 500; font-size: 2.2em">My name is Pan Min.</h2>
-            <p>
-                I am a front-end engineer. Over the years, I have dedicated myself to
-                enhancing my skills in front-end development, accumulating a wealth of
-                experience and expertise. Throughout my career, I have been involved
-                in the development and maintenance of various projects, ranging from
-                small websites to large, complex applications.
-            </p>
-            <p>
-                My technical stack includes, but is not limited to, HTML5, CSS3,
-                JavaScript, Vue.js, React, Node.js, and related front-end development
-                tools and frameworks. I enjoy exploring the latest front-end
-                technologies and applying them to real-world projects to improve
-                development efficiency and user experience.
-            </p>
-            <p>
-                In my work, I focus on code quality and maintainability, and I excel
-                in collaborating with team members to solve problems and ensure
-                project success. I believe that continuous learning and practice are
-                essential to staying competitive in a rapidly changing technological
-                landscape.
-            </p>
-            <p>
-                Besides my job, I also enjoy writing technical blogs to share my
-                development experiences and insights. If you are interested in
-                front-end development, you can check out my
-                <a href="https://github.com/pm981206" target="_blank" rel="noopener noreferrer">GitHub Profile</a>,
-                where we can exchange ideas and learn together.
-            </p>
-        </article>
-    </main>
+    <h1>Hello.</h1>
+    <h2 style="font-weight: 500; font-size: 2.2em">My name is Pan Min.</h2>
+    <p>
+        I am a front-end engineer. Over the years, I have dedicated myself to
+        enhancing my skills in front-end development, accumulating a wealth of
+        experience and expertise. Throughout my career, I have been involved
+        in the development and maintenance of various projects, ranging from
+        small websites to large, complex applications.
+    </p>
+    <p>
+        My technical stack includes, but is not limited to, HTML5, CSS3,
+        JavaScript, Vue.js, React, Node.js, and related front-end development
+        tools and frameworks. I enjoy exploring the latest front-end
+        technologies and applying them to real-world projects to improve
+        development efficiency and user experience.
+    </p>
+    <p>
+        In my work, I focus on code quality and maintainability, and I excel
+        in collaborating with team members to solve problems and ensure
+        project success. I believe that continuous learning and practice are
+        essential to staying competitive in a rapidly changing technological
+        landscape.
+    </p>
+    <p>
+        Besides my job, I also enjoy writing technical blogs to share my
+        development experiences and insights. If you are interested in
+        front-end development, you can check out my
+        <a href="https://github.com/pm981206" target="_blank" rel="noopener noreferrer">GitHub Profile</a>,
+        where we can exchange ideas and learn together.
+    </p>
+
 </body>
 
 </html>
